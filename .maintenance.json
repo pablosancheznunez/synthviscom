@@ -1,0 +1,7 @@
+{
+  "risk_paths": {
+    "high": ["data/**", "metadata/**", "code/**", "images/**", "MD5SUMS", "DATA_DESCRIPTOR.md", "LICENSE*"],
+    "low": ["README.md", "README_es.md", "index.html", "es/**", "assets/**", "examples/**", "CHANGELOG.md"]
+  },
+  "release": { "version_files": ["CITATION.cff"] }
+}

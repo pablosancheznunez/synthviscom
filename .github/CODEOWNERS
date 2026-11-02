@@ -1,0 +1,10 @@
+# Paths that need the maintainer's approval (see .maintenance.json).
+/data/ @pablosancheznunez
+/metadata/ @pablosancheznunez
+/code/ @pablosancheznunez
+/images/ @pablosancheznunez
+/MD5SUMS @pablosancheznunez
+/DATA_DESCRIPTOR.md @pablosancheznunez
+/.github/ @pablosancheznunez
+/.maintenance.json @pablosancheznunez
+/CONTRIBUTING.md @pablosancheznunez
