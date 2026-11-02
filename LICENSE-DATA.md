@@ -19,7 +19,7 @@ and indicate if you made changes. Suggested credit:
 
 > Sánchez-Núñez, P. (2026). *Synthetic Dataset for Visual Communication
 > Education and Research* (SynthVisCom, Version 0.1.0) [Data set].
-> https://github.com/pablosancheznunez/synthviscom. CC BY 4.0.
+> https://doi.org/10.5281/zenodo.23876696. CC BY 4.0.
 
 The code in `code/` is licensed separately under the MIT licence (see
 `LICENSE`).

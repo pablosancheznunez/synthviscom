@@ -25,6 +25,14 @@ authors:
     website: "https://pablosancheznunez.com"
 repository-code: "https://github.com/pablosancheznunez/synthviscom"
 url: "https://github.com/pablosancheznunez/synthviscom"
+doi: 10.5281/zenodo.23876696
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23876696
+    description: "Concept DOI: all versions, resolves to the latest"
+  - type: doi
+    value: 10.5281/zenodo.23876697
+    description: "Version 0.1.0"
 license:
   - CC-BY-4.0
   - MIT

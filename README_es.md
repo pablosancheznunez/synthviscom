@@ -2,6 +2,8 @@
 
 **Conjunto de datos sintéticos para la docencia y la investigación en comunicación visual**
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23876696.svg)](https://doi.org/10.5281/zenodo.23876696)
+
 > **Todos los datos de este conjunto son sintéticos.** Se generaron con un
 > modelo estadístico documentado y una semilla aleatoria fija. No
 > representan a personas reales, diseños reales ni resultados empíricos, y
@@ -43,7 +45,7 @@ Rscript code/check.R   # comprobaciones de integridad, coherencia e imágenes
 
 Sánchez-Núñez, P. (2026). *Synthetic Dataset for Visual Communication
 Education and Research* (SynthVisCom, versión 0.1.0) [Conjunto de datos].
-https://github.com/pablosancheznunez/synthviscom
+https://doi.org/10.5281/zenodo.23876696
 
 ## Licencias
 
