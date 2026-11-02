@@ -1,0 +1,30 @@
+{
+  "upload_type": "dataset",
+  "title": "Synthetic Dataset for Visual Communication Education and Research (SynthVisCom)",
+  "creators": [
+    {
+      "name": "Sánchez-Núñez, Pablo",
+      "orcid": "0000-0001-7845-9506"
+    }
+  ],
+  "description": "<p>SynthVisCom is an open synthetic dataset for teaching and researching visual communication. 2,000 simulated designs (posters, infographics, data charts, social media images and slides) are described by colour, contrast, typography, layout, hierarchy and image-to-text ratio, each with a PNG image drawn from its variables, and are seen by 1,000 simulated participants who produce 20,000 responses on attention, comprehension, recall, aesthetics, preference, cognitive load and engagement.</p><p>A codebook, a data descriptor, an image manifest, the documented generating effects and a reproducible base-R generator and renderer are included, so analyses can be checked against a known truth.</p><p><strong>All data are synthetic.</strong> They do not represent real people, real designs or empirical findings and must not be cited as evidence about human perception.</p><p>Data, images and documentation are licensed under CC BY 4.0; the code in <code>code/</code> is licensed under the MIT License.</p>",
+  "license": "cc-by-4.0",
+  "keywords": [
+    "visual communication",
+    "graphic design",
+    "information design",
+    "data visualization",
+    "accessibility",
+    "synthetic data",
+    "open data",
+    "open educational resources"
+  ],
+  "language": "eng",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/pablosancheznunez/synthviscom",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}
