@@ -4,6 +4,8 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23876696.svg)](https://doi.org/10.5281/zenodo.23876696)
 
+**Web y explorador de diseños:** <https://pablosancheznunez.com/synthviscom/es/>
+
 > **Todos los datos de este conjunto son sintéticos.** Se generaron con un
 > modelo estadístico documentado y una semilla aleatoria fija. No
 > representan a personas reales, diseños reales ni resultados empíricos, y

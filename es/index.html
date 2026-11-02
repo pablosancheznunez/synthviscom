@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SynthVisCom · Datos sintéticos de comunicación visual</title>
+<meta name="description" content="Conjunto de datos sintéticos abierto para la docencia y la investigación en comunicación visual: 2.000 diseños con imagen, 1.000 participantes ficticios y 20.000 respuestas simuladas, con efectos generadores conocidos. CC BY 4.0.">
+<link rel="canonical" href="https://pablosancheznunez.com/synthviscom/es/">
+<link rel="alternate" hreflang="en" href="https://pablosancheznunez.com/synthviscom/">
+<link rel="alternate" hreflang="es" href="https://pablosancheznunez.com/synthviscom/es/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SynthVisCom · Datos sintéticos de comunicación visual">
+<meta property="og:description" content="2.000 diseños sintéticos con imagen, 1.000 participantes ficticios y 20.000 respuestas simuladas, con efectos generadores conocidos. Datos abiertos, CC BY 4.0.">
+<meta property="og:url" content="https://pablosancheznunez.com/synthviscom/es/">
+<meta property="og:image" content="https://pablosancheznunez.com/synthviscom/images/D0002.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./"><img src="../assets/favicon.svg" width="26" height="26" alt=""> SynthVisCom</a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#contenido">Contenido</a>
+      <a href="#explorar">Explorar</a>
+      <a href="#descargar">Descargar</a>
+      <a href="#docencia">Docencia</a>
+      <a href="#citar">Citar</a>
+      <a class="lang" href="../" hreflang="en" lang="en">English</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="hero">
+      <h1>Datos sintéticos para la comunicación visual</h1>
+      <p class="lead">2.000 diseños sintéticos con su imagen, 1.000 participantes ficticios y 20.000 respuestas simuladas, con todos los efectos generadores documentados. Para enseñar y probar análisis frente a una verdad conocida, sin riesgos de privacidad.</p>
+      <div class="actions">
+        <a class="btn primary" href="#descargar">Descargar los datos</a>
+        <a class="btn" href="#explorar">Explorar los diseños</a>
+        <a class="btn" href="https://github.com/pablosancheznunez/synthviscom">GitHub</a>
+      </div>
+      <div class="notice" role="note">
+        <p><strong>Todos los datos son sintéticos.</strong> Se generaron con un modelo estadístico documentado y semillas fijas. No representan a personas reales, diseños reales ni resultados empíricos, y no deben citarse como evidencia sobre la percepción humana.</p>
+      </div>
+      <div class="mosaic">
+        <img src="../images/D1017.png" width="566" height="800" alt="Cartel sintético D1017">
+        <img src="../images/D0927.png" width="450" height="800" alt="Infografía sintética D0927">
+        <img src="../images/D0871.png" width="800" height="800" alt="Imagen sintética para redes D0871">
+        <img src="../images/D1616.png" width="800" height="600" alt="Gráfico de datos sintético D1616">
+        <img src="../images/D1933.png" width="800" height="450" alt="Diapositiva sintética D1933">
+        <img src="../images/D1905.png" width="566" height="800" alt="Cartel sintético D1905">
+        <img src="../images/D1051.png" width="450" height="800" alt="Infografía sintética D1051">
+        <img src="../images/D0223.png" width="800" height="800" alt="Imagen sintética para redes D0223">
+        <img src="../images/D1799.png" width="800" height="600" alt="Gráfico de datos sintético D1799">
+        <img src="../images/D1441.png" width="800" height="450" alt="Diapositiva sintética D1441">
+      </div>
+      <p class="caption">Diez de las 2.000 imágenes sintéticas. El texto es pseudotexto sin significado y los rostros son esquemáticos; cada propiedad está registrada en las tablas.</p>
+    </div>
+  </div>
+
+  <section id="contenido">
+    <div class="wrap">
+      <h2>Qué contiene</h2>
+      <p class="section-intro">Un estudio simulado en el que personas observan diseños visuales y responden a ellos: tres tablas enlazadas, una imagen por diseño y los metadatos para interpretarlas.</p>
+      <div class="stats">
+        <div class="stat"><b>2.000</b><span>diseños sintéticos</span></div>
+        <div class="stat"><b>2.000</b><span>imágenes PNG, una por diseño</span></div>
+        <div class="stat"><b>1.000</b><span>participantes ficticios</span></div>
+        <div class="stat"><b>20.000</b><span>respuestas simuladas</span></div>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Tabla</th><th scope="col">Cada fila es</th><th scope="col">Variables</th></tr></thead>
+          <tbody>
+            <tr><td><code>synthetic_designs.csv</code></td><td>un cartel, infografía, gráfico de datos, imagen para redes o diapositiva</td><td>paleta, armonía y saturación del color, contraste WCAG del texto, tipografías, tamaño del texto, interlineado, maquetación, alineación, espacio en blanco, niveles de jerarquía, punto focal, proporción imagen/texto, número de palabras, rostros, tipo de gráfico, ratio datos-tinta, texto alternativo, complejidad visual</td></tr>
+            <tr><td><code>synthetic_participants.csv</code></td><td>un participante ficticio</td><td>grupo de edad, experiencia en diseño, alfabetización visual, visión del color, baja visión, dispositivo</td></tr>
+            <tr><td><code>synthetic_responses.csv</code></td><td>la respuesta de un participante a un diseño (20 cada uno)</td><td>tiempo hasta la primera fijación, tiempo de visualización, comprensión (0-5), valoraciones estética y de preferencia (1-7), carga cognitiva (0-100), recuerdo a las 24 horas, interacción</td></tr>
+            <tr><td><code>images/</code></td><td>un PNG por diseño</td><td>dibujado a partir de las variables del diseño; <code>metadata/images.csv</code> recoge los colores, el contraste y la paleta realmente dibujados</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cards" style="margin-top:16px">
+        <div class="card"><h3>Verdad conocida</h3><p>Todos los efectos usados para simular las respuestas están en <a href="../metadata/true_effects.csv"><code>true_effects.csv</code></a>, para comprobar si un modelo los recupera.</p></div>
+        <div class="card"><h3>Imágenes coherentes con los datos</h3><p>Cada imagen se dibuja a partir de su fila: el color del texto se calcula para lograr el contraste WCAG exacto, y la paleta, la tipografía, la maquetación y los gráficos siguen las variables.</p></div>
+        <div class="card"><h3>Reproducible</h3><p>Scripts en R base regeneran cada fichero byte a byte con semillas fijas, y 55 comprobaciones verifican sumas, claves, rangos y efectos.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="explorar">
+    <div class="wrap">
+      <h2>Explora los diseños</h2>
+      <p class="section-intro">Filtra los 2.000 diseños sintéticos y abre cualquiera para ver su imagen, sus variables, los colores dibujados y la media de las respuestas simuladas. Los nombres de las variables están en inglés, como en los ficheros.</p>
+      <div id="explorer" data-base="../">
+        <form class="filters" onsubmit="return false" aria-label="Filtrar diseños">
+          <label>Tipo <select name="type"></select></label>
+          <label>Contraste <select name="wcag"></select></label>
+          <label>Maquetación <select name="layout"></select></label>
+          <label>Rostro <select name="face"></select></label>
+          <label>Ordenar por <select name="sort"></select></label>
+        </form>
+        <p class="count" aria-live="polite"></p>
+        <div class="grid"></div>
+        <button class="btn more" type="button" hidden></button>
+        <dialog></dialog>
+      </div>
+    </div>
+  </section>
+
+  <section id="descargar">
+    <div class="wrap">
+      <h2>Descargar</h2>
+      <div class="two">
+        <div>
+          <h3>Todo</h3>
+          <p>La versión archivada en Zenodo (datos, imágenes, metadatos, código y ejemplos):<br>
+          <a class="btn primary" style="margin-top:8px" href="https://doi.org/10.5281/zenodo.23876696">Zenodo · DOI 10.5281/zenodo.23876696</a></p>
+          <p>O clona el repositorio: <code>git clone https://github.com/pablosancheznunez/synthviscom</code></p>
+        </div>
+        <div>
+          <h3>Ficheros sueltos (CSV, UTF-8)</h3>
+          <ul>
+            <li><a href="../data/synthetic_designs.csv">synthetic_designs.csv</a> (2.000 filas)</li>
+            <li><a href="../data/synthetic_participants.csv">synthetic_participants.csv</a> (1.000 filas)</li>
+            <li><a href="../data/synthetic_responses.csv">synthetic_responses.csv</a> (20.000 filas)</li>
+            <li><a href="../metadata/codebook.csv">codebook.csv</a>: libro de códigos</li>
+            <li><a href="../metadata/true_effects.csv">true_effects.csv</a>: efectos generadores</li>
+            <li><a href="../metadata/images.csv">images.csv</a>: manifiesto de imágenes</li>
+            <li><a href="https://github.com/pablosancheznunez/synthviscom/blob/main/DATA_DESCRIPTOR.md">Descriptor de datos</a> (en inglés)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="two" style="margin-top:12px">
+        <div>
+          <h3>R</h3>
+<pre><code>base &lt;- "https://pablosancheznunez.com/synthviscom/data/"
+designs &lt;- read.csv(paste0(base, "synthetic_designs.csv"), na.strings = "")
+participants &lt;- read.csv(paste0(base, "synthetic_participants.csv"))
+responses &lt;- read.csv(paste0(base, "synthetic_responses.csv"))
+study &lt;- merge(merge(responses, designs), participants)</code></pre>
+        </div>
+        <div>
+          <h3>Python</h3>
+<pre><code>import pandas as pd
+base = "https://pablosancheznunez.com/synthviscom/data/"
+designs = pd.read_csv(base + "synthetic_designs.csv")
+participants = pd.read_csv(base + "synthetic_participants.csv")
+responses = pd.read_csv(base + "synthetic_responses.csv")
+study = (responses.merge(designs, on="design_id")
+                  .merge(participants, on="participant_id"))</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="docencia">
+    <div class="wrap">
+      <h2>Para docencia e investigación</h2>
+      <p class="section-intro">El repositorio incluye un script de introducción y un cuaderno con nueve ejercicios resueltos (en inglés) para asignaturas de comunicación visual, diseño de información, visualización de datos, accesibilidad y métodos de investigación.</p>
+      <div class="cards">
+        <div class="card"><h3>Auditoría de accesibilidad</h3><p>¿Qué diseños no cumplen el contraste WCAG y a quién excluyen? La comprensión cae por debajo de 4,5:1, más en participantes con daltonismo o baja visión.</p></div>
+        <div class="card"><h3>Modelos con respuesta conocida</h3><p>Ajusta regresiones y modelos ordinales o mixtos y compáralos con los efectos reales; detecta sesgo por variable omitida y mediación.</p></div>
+        <div class="card"><h3>Potencia por simulación</h3><p>El generador crea estudios sintéticos nuevos de cualquier tamaño para ver cuántos participantes necesitaría un estudio real.</p></div>
+        <div class="card"><h3>Crítica de diseño</h3><p>Compara las imágenes de los diseños mejor y peor comprendidos y explica la diferencia con los datos.</p></div>
+        <div class="card"><h3>Elección de gráficos</h3><p>Representa el efecto del contraste en escala logarítmica, compara tipos de gráfico y ratios datos-tinta.</p></div>
+        <div class="card"><h3>Análisis de imagen</h3><p>Estima el contraste, el colorido o la densidad de texto a partir de los píxeles y compáralos con los valores registrados.</p></div>
+      </div>
+      <p style="margin-top:16px"><a href="https://github.com/pablosancheznunez/synthviscom/blob/main/examples/teaching-exercises.Rmd">Ejercicios</a> · <a href="https://github.com/pablosancheznunez/synthviscom/blob/main/examples/getting-started.R">Script de introducción</a> · <a href="https://github.com/pablosancheznunez/synthviscom/tree/main/code">Generador y renderizador</a></p>
+    </div>
+  </section>
+
+  <section id="citar">
+    <div class="wrap">
+      <h2>Cómo citar</h2>
+      <p>Sánchez-Núñez, P. (2026). <em>Synthetic Dataset for Visual Communication Education and Research</em> (SynthVisCom, versión 0.1.0) [Conjunto de datos]. Zenodo. <a href="https://doi.org/10.5281/zenodo.23876696">https://doi.org/10.5281/zenodo.23876696</a></p>
+<pre><code>@dataset{sancheznunez_2026_synthviscom,
+  author    = {Sánchez-Núñez, Pablo},
+  title     = {Synthetic Dataset for Visual Communication Education
+               and Research (SynthVisCom)},
+  year      = {2026},
+  version   = {0.1.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.23876696},
+  url       = {https://doi.org/10.5281/zenodo.23876696}
+}</code></pre>
+      <h3 style="margin-top:20px">Licencias</h3>
+      <p>Datos, imágenes, metadatos, documentación y esta página: <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a>. Código (generador, renderizador, scripts y el explorador de esta página): <a href="https://github.com/pablosancheznunez/synthviscom/blob/main/LICENSE">MIT</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>SynthVisCom, de <a href="https://pablosancheznunez.com/">Pablo Sánchez-Núñez</a> · <a href="https://orcid.org/0000-0001-7845-9506">ORCID 0000-0001-7845-9506</a> · <a href="https://github.com/pablosancheznunez/synthviscom">Código en GitHub</a></p>
+    <p>Todos los datos e imágenes de este sitio son sintéticos. Esta página no usa cookies, rastreadores ni servicios de terceros.</p>
+  </div>
+</footer>
+<script src="../assets/explorer.js"></script>
+</body>
+</html>
