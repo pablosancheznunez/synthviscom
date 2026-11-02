@@ -10,13 +10,13 @@ Rscript code/check.R
 
 The script verifies the checksums in `MD5SUMS`, that the generator reproduces the published files exactly, and the structure and keys of every table. It runs on every change and every week.
 
-## Changes that may be made without the maintainer's review
+## Small changes (welcome as pull requests)
 
 - The website, the READMEs, the examples and the changelog.
 
-## Changes that always need the maintainer's review
+## Changes to discuss in an issue first
 
 - `data/`, `metadata/`, `images/`, `code/`, `MD5SUMS` and `DATA_DESCRIPTOR.md`. Any change to the data is a new version of the dataset with its own DOI.
-- Workflows, `.maintenance.json`, `CODEOWNERS` and this file.
+- Workflows and this file.
 
 All data are synthetic and must never be presented as evidence about real people.
