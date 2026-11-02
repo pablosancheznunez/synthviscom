@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this dataset in teaching or research, please cite it as below. All data are synthetic."
+type: dataset
+title: "Synthetic Dataset for Visual Communication Education and Research"
+abstract: >-
+  SynthVisCom is an open synthetic dataset for teaching and researching
+  visual communication. 2,000 simulated designs (posters, infographics, data
+  charts, social media images and slides) are described by colour, contrast,
+  typography, layout, hierarchy and image-to-text ratio, each with a PNG
+  image drawn from its variables, and are seen by 1,000 simulated
+  participants who produce 20,000 responses on attention, comprehension,
+  recall, aesthetics, preference, cognitive load and engagement. A codebook,
+  a data descriptor, the documented generating effects and a reproducible
+  base-R generator and renderer are included, so analyses can be checked
+  against a known truth. All data are synthetic and do not
+  represent real people, designs or empirical findings. Data and
+  documentation are released under CC BY 4.0 and code under the MIT License.
+version: 0.1.0
+date-released: 2026-11-01
+authors:
+  - family-names: "Sánchez-Núñez"
+    given-names: "Pablo"
+    email: psancheznunez@outlook.com
+    orcid: "https://orcid.org/0000-0001-7845-9506"
+    website: "https://pablosancheznunez.com"
+repository-code: "https://github.com/pablosancheznunez/synthviscom"
+url: "https://github.com/pablosancheznunez/synthviscom"
+license:
+  - CC-BY-4.0
+  - MIT
+keywords:
+  - visual communication
+  - graphic design
+  - information design
+  - data visualization
+  - accessibility
+  - synthetic data
+  - open data
+  - open educational resources

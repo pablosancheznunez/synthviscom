@@ -1,0 +1,7 @@
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+examples/*.html
+examples/*_files/
+.claude/

@@ -1,0 +1,272 @@
+---
+title: "Teaching exercises"
+subtitle: "SynthVisCom: Synthetic Dataset for Visual Communication Education and Research"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 7, fig.height = 4.5)
+okabe_ito <- c("#E69F00", "#56B4E9", "#009E73", "#0072B2", "#D55E00", "#CC79A7")
+```
+
+Nine exercises for courses on visual communication, information design,
+data visualisation, accessibility and research methods. Each has a question
+for students, a hint, and a worked solution. Because the data are synthetic,
+the "right answer" is known: compare your results with
+`metadata/true_effects.csv`.
+
+> **Remind students that the data are synthetic.** Results describe the
+> simulation model, not real audiences.
+
+This notebook lives in `examples/` and reads the files relative to it.
+Render it with `rmarkdown::render("examples/teaching-exercises.Rmd")`, or
+run the chunks one by one with the working directory set to `examples/`.
+It needs only base R (and the rmarkdown package to render).
+
+```{r load}
+designs <- read.csv("../data/synthetic_designs.csv", na.strings = "")
+participants <- read.csv("../data/synthetic_participants.csv")
+responses <- read.csv("../data/synthetic_responses.csv")
+true_effects <- read.csv("../metadata/true_effects.csv")
+source("../code/generator.R")  # only needed for exercise 8
+```
+
+Most exercises start from the joined table:
+
+```{r}
+study <- merge(merge(responses, designs, by = "design_id"),
+               participants, by = "participant_id")
+```
+
+## 1. Describe the corpus
+
+**Question.** What kinds of artefacts are in `designs`? How do word count
+and imagery differ between them?
+
+*Hint:* `table()`, `tapply()` and `boxplot()` are enough.
+
+<details><summary>Solution</summary>
+
+```{r}
+table(designs$artefact_type)
+round(tapply(designs$word_count, designs$artefact_type, median))
+boxplot(image_text_ratio ~ artefact_type, data = designs, col = "#56B4E9",
+        border = "grey30", xlab = "", ylab = "Share of area that is imagery")
+```
+
+Infographics are the wordiest, social media images the most image-heavy and
+data charts the least.
+</details>
+
+## 2. Accessibility audit
+
+**Question.** What share of designs fails WCAG 2 AA text contrast? Does it
+vary by artefact type? Which of the failing designs have no text
+alternative?
+
+<details><summary>Solution</summary>
+
+```{r}
+round(100 * (1 - mean(designs$wcag_aa_contrast)), 1)
+round(100 * tapply(!designs$wcag_aa_contrast, designs$artefact_type, mean), 1)
+with(designs, table(fails_aa = !wcag_aa_contrast, alt_text))
+```
+
+Slides fail least often, because large text only needs 3:1.
+</details>
+
+## 3. Who is excluded by low contrast?
+
+**Question.** Compare comprehension for participants with typical colour
+vision and with red-green colour vision deficiency (deutan or protan), for
+designs with complementary or triadic palettes, below and above 4.5:1.
+
+*Hint:* the effect is an interaction. Plot it.
+
+<details><summary>Solution</summary>
+
+```{r cvd}
+sub <- study[study$colour_harmony %in% c("complementary", "triadic") & !study$low_vision, ]
+sub$vision <- ifelse(sub$colour_vision %in% c("deutan", "protan"), "red-green CVD", "typical")
+sub$aa <- ifelse(sub$contrast_ratio >= 4.5, "4.5:1 or more", "below 4.5:1")
+m <- with(sub, tapply(comprehension_score, list(vision, aa), mean))
+round(m, 2)
+barplot(m, beside = TRUE, col = okabe_ito[c(1, 4)], border = NA, ylim = c(0, 5),
+        legend.text = TRUE, args.legend = list(x = "topleft", bty = "n"),
+        ylab = "Mean correct answers (of 5)")
+```
+
+Above 4.5:1 the two groups are close; below it the gap widens because
+colour vision deficiency lowers the contrast experienced. Discuss why the
+sample of participants with colour vision deficiency is small, and what
+that means for the precision of the estimate.
+</details>
+
+## 4. Choose the right chart
+
+**Question.** Show how comprehension changes with contrast ratio. Which
+scale should the x axis use, and why?
+
+<details><summary>Solution</summary>
+
+```{r scale}
+bins <- cut(study$contrast_ratio, breaks = exp(seq(log(1.2), log(21), length.out = 15)),
+            include.lowest = TRUE)
+mid <- tapply(study$contrast_ratio, bins, median)
+y <- tapply(study$comprehension_score, bins, mean)
+plot(mid, y, log = "x", type = "b", pch = 19, col = "#0072B2", ylim = c(0, 5),
+     xlab = "Contrast ratio (log scale)", ylab = "Mean correct answers (of 5)")
+abline(v = 4.5, lty = 2, col = "grey40")
+text(4.5, 0.4, "WCAG AA", pos = 4, col = "grey30")
+```
+
+Contrast ratios are multiplicative (from 1:1 to 21:1), so a log axis spreads
+the values evenly. The curve rises steeply up to 4.5:1 and flattens after.
+</details>
+
+## 5. Model comprehension
+
+**Question.** Fit a logistic regression for the number of correct answers
+(out of five) with contrast below and above 4.5:1, focal point, word count
+and visual literacy. Compare the coefficients with the true effects.
+
+<details><summary>Solution</summary>
+
+```{r}
+study$lc <- log(study$contrast_ratio / 4.5)
+fit <- glm(cbind(comprehension_score, 5 - comprehension_score) ~
+             pmin(lc, 0) + pmax(lc, 0) + focal_point + log(word_count / 50) +
+             I(visual_literacy - 50),
+           family = binomial, data = study)
+round(coef(fit), 3)
+eff <- true_effects
+eff[eff$outcome == "comprehension" &
+      eff$term %in% c("log_contrast_below_aa", "log_contrast_above_aa", "focal_point",
+                      "log_word_count", "visual_literacy"), c("term", "value")]
+```
+
+Contrast, focal point and visual literacy are close to the truth. The
+word count effect is too strong: wordier designs are also more complex
+(`visual_complexity` is computed partly from word count), and complexity
+lowers comprehension too. Leaving it out of the model loads its effect onto
+word count, which is omitted-variable bias. Add `I(visual_complexity - 50)`
+and the word count estimate falls to about -0.30.
+
+The remaining estimates are slightly smaller than the true values for two
+reasons. The model ignores the random effects for designs and participants,
+which pulls population-average log-odds towards zero (`lme4::glmer()` with
+`(1 | design_id) + (1 | participant_id)` gets closer). It also uses the
+nominal contrast ratio rather than the effective one.
+</details>
+
+## 6. Aesthetic judgement and expertise
+
+**Question.** Does alignment consistency matter more to professional
+designers than to other participants?
+
+<details><summary>Solution</summary>
+
+```{r}
+fit <- lm(aesthetic_rating ~ alignment_consistency * design_expertise, data = study)
+round(coef(summary(fit))[, 1:2], 3)
+```
+
+The interaction term for professionals is clearly positive. Discuss the
+choice of treating a 1-7 rating as numeric, and try `MASS::polr()` for an
+ordinal model.
+</details>
+
+## 7. Direct and indirect paths to recall
+
+**Question.** Recall depends on comprehension and dwell time. Does the
+estimated effect of a human face, and of visual complexity, change when you
+control for them?
+
+<details><summary>Solution</summary>
+
+```{r}
+study$cx <- study$visual_complexity - 50
+paths <- function(term) {
+  total <- glm(reformulate(term, "recall_24h"), family = binomial, data = study)
+  direct <- glm(reformulate(c(term, "comprehension_score", "log(dwell_time_s)"), "recall_24h"),
+                family = binomial, data = study)
+  c(total = coef(total)[[2]], direct = coef(direct)[[2]])
+}
+round(rbind(human_face = paths("human_face"), complexity_per_point = paths("cx")), 4)
+```
+
+Faces act on recall only directly in the generating model
+(`r true_effects$value[true_effects$outcome == "recall_24h" & true_effects$term == "human_face"]`
+on the logit scale), so both estimates are about the same. Complexity
+also has indirect paths: it lowers comprehension (less recall) and lengthens
+dwell time (more recall). Controlling for the mediators moves its estimate
+towards the direct effect of -0.010. Discuss which estimate answers which
+question, and why controlling for a mediator is not always what you want.
+</details>
+
+## 8. How many participants do you need?
+
+**Question.** A class study can recruit 30 participants who each see 10
+designs. How often would such a study detect the effect of a focal point on
+comprehension at the 5% level?
+
+*Hint:* use `vc_generate()` from `code/generator.R` with different seeds.
+
+<details><summary>Solution</summary>
+
+```{r power}
+detect <- vapply(1:40, function(s) {
+  sim <- vc_generate(n_designs = 200, n_participants = 30,
+                     trials_per_participant = 10, seed = 1000 + s)
+  d <- merge(sim$responses, sim$designs, by = "design_id")
+  fit <- glm(cbind(comprehension_score, 5 - comprehension_score) ~ focal_point,
+             family = binomial, data = d)
+  coef(summary(fit))["focal_pointTRUE", 4] < 0.05
+}, logical(1))
+mean(detect)
+```
+
+Repeat with 60 or 120 participants and plot the detection rate. This is a
+simulation-based power analysis; the same approach works for any planned
+design study, as long as students are clear that the effect sizes are
+assumptions.
+</details>
+
+## 9. Critique the images
+
+**Question.** Every design has an image in `images/`. Find the three
+designs with the lowest and the three with the highest mean comprehension.
+Look at their images: which visible features would you blame, and does the
+table agree?
+
+*Hint:* `metadata/images.csv` gives each design's file and the contrast
+actually drawn.
+
+<details><summary>Solution</summary>
+
+```{r images}
+images <- read.csv("../metadata/images.csv")
+score <- tapply(responses$comprehension_score, responses$design_id, mean)
+ids <- names(sort(score))[c(1:3, (length(score) - 2):length(score))]
+cols <- c("design_id", "artefact_type", "contrast_ratio", "word_count",
+          "hierarchy_levels", "visual_complexity", "focal_point")
+cbind(designs[match(ids, designs$design_id), cols], mean_score = round(score[ids], 2))
+```
+
+```{r image-grid, echo = FALSE, out.width = "32%", fig.show = "hold"}
+knitr::include_graphics(file.path("..", images$image_file[match(ids, images$design_id)]))
+```
+
+The weakest designs usually combine low contrast with many words or high
+complexity; the strongest have high contrast, a focal point and short text.
+Mean scores rest on only about ten responses per design, so chance also
+plays a part. A good follow-up: pick two images that look similar but score
+differently, and explain the difference from the table.
+</details>
+
+## For discussion
+
+- What would you need to change in this model to make it more realistic?
+- Why must a synthetic result never be reported as a finding about people?
+- Which real study could you design to test one of these effects, and what
+  ethical approvals would it need?
